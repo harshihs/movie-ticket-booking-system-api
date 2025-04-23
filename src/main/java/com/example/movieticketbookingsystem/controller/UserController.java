@@ -1,5 +1,6 @@
 package com.example.movieticketbookingsystem.controller;
 
+import com.example.movieticketbookingsystem.dto.UserRegistrationDto;
 import com.example.movieticketbookingsystem.entity.UserDetails;
 import com.example.movieticketbookingsystem.entity.utility.ResponseStructure;
 import com.example.movieticketbookingsystem.entity.utility.RestResponseStructures;
@@ -20,9 +21,10 @@ public class UserController {
     private final RestResponseStructures restResponseStructures;
 
     @PostMapping("/register")
-    public ResponseEntity<ResponseStructure<UserDetails>> addUser(@RequestBody UserDetails user) {
-        UserDetails userDetails = userService.addUser((user));
-        return restResponseStructures.success(HttpStatus.OK, "New User Details Has been", userDetails);
+    public ResponseEntity<ResponseStructure<UserDetails>> addUser(
+            @RequestBody UserRegistrationDto dto) {
 
-    }
+        UserDetails savedUser = userService.addUser(dto);
+        return restResponseStructures.success(HttpStatus.OK, "User registered successfully", savedUser);
+}
 }
