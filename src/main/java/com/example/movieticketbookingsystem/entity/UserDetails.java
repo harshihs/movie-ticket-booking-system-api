@@ -1,5 +1,5 @@
 package com.example.movieticketbookingsystem.entity;
-import com.example.movieticketbookingsystem.entity.enums.UserRole;
+import com.example.movieticketbookingsystem.enums.UserRole;
 import jakarta.persistence.*;
 
 import lombok.AllArgsConstructor;

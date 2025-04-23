@@ -2,10 +2,12 @@ package com.example.movieticketbookingsystem.mapper;
 
 
 import com.example.movieticketbookingsystem.dto.UserRegistrationDto;
+import com.example.movieticketbookingsystem.dto.UserResponse;
 import com.example.movieticketbookingsystem.entity.TheaterOwner;
 import com.example.movieticketbookingsystem.entity.User;
 import com.example.movieticketbookingsystem.entity.UserDetails;
 import org.springframework.stereotype.Component;
+import com.example.movieticketbookingsystem.enums.UserRole;
 
 import java.time.Instant;
 
@@ -13,7 +15,7 @@ import java.time.Instant;
     public class UserDetailsMapper {
         private UserDetailsMapper() {} // Utility class
 
-        public static UserDetails mapFromDTO(UserRegistrationDto dto) {
+        public static UserDetails mapFromDTO(UserResponse dto) {
             UserDetails user = switch (dto.userRole()) {
                 case USER -> new User();
                 case THEATER_OWNER -> new TheaterOwner();
@@ -21,7 +23,7 @@ import java.time.Instant;
 
             user.setUsername(dto.username());
             user.setEmail(dto.email());
-            user.setPassword(dto.password()); // Hash later
+            // Hash later
             user.setPhoneNumber(dto.phoneNumber());
             user.setUserRole(dto.userRole());
             user.setDateOfBirth(dto.dateOfBirth());
